@@ -3,6 +3,7 @@ package config
 import (
 	"log"
 
+	"github.com/ursachecodrut/api/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -13,6 +14,8 @@ func ConnectDB(url string) *gorm.DB {
 	if err != nil {
 		log.Fatalln(err)
 	}
+
+	db.AutoMigrate(&models.User{})
 
 	return db
 }
